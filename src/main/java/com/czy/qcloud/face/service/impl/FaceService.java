@@ -8,4 +8,5 @@ public abstract class FaceService {
     protected static final String SECRET_KEY = "jGbkhJp8JI4e4ISgvhDkIjy1vd8QXR4l";
     protected static final String BUCKET_NAME = "test";
     protected static final ImageClient imageClient = new ImageClient(APP_ID, SECRET_ID, SECRET_KEY);
+    protected static final String GROUP = "testGroup";
 }

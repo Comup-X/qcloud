@@ -5,6 +5,11 @@ import App from './App.vue'
 
 import VueRouter from 'vue-router'
 import routes from './routes'
+import cos from './cos'
+import axios from 'axios'
+
+Vue.prototype.cos = cos;
+Vue.prototype.axios = axios;
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);

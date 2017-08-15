@@ -1,23 +1,15 @@
 <template>
-    <div id="face-compare">
+    <div>
         <el-row>
             <el-col :span="12">
-                <el-upload
-                        ref="personA"
-                        action=""
-                        :before-upload="uploadA">
-                    <img v-if="personAUrl" :src="personAUrl" class="avatar">
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
+                <cos-upload folder="/test/"
+                            @success="asuccess">
+                </cos-upload>
             </el-col>
             <el-col :span="12">
-                <el-upload
-                        ref="personB"
-                        action=""
-                        :before-upload="uploadB">
-                    <img v-if="personBUrl" :src="personBUrl" class="avatar">
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
+                <cos-upload folder="/test/"
+                            @success="bsuccess">
+                </cos-upload>
             </el-col>
         </el-row>
         <el-row>
@@ -26,21 +18,17 @@
                     :allow-half="true"
                     :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
             </el-rate>
-            <span>{{result*20}}</span>
+            <span>{{result * 20}}</span>
         </el-row>
     </div>
 </template>
 
 <script>
-    import cos from './cos'
-    import axios from 'axios'
-    import ElRow from "element-ui/packages/row/src/row";
-    import ElCol from "element-ui/packages/col/src/col";
+    import cosUpload from './CosUpload.vue'
 
     export default {
         components: {
-            ElCol,
-            ElRow
+            'cos-upload': cosUpload
         },
         data() {
             return {
@@ -53,7 +41,7 @@
         watch: {
             personAUrl(newValue, oldValue) {
                 if (this.personBUrl !== '') {
-                    axios.post('http://127.0.0.1:8080/faceCompare/compare', {
+                    this.axios.post('http://127.0.0.1:8080/faceCompare/compare', {
                         urlA: this.personAUrl, urlB: this.personBUrl
                     }).then((success) => {
                         if (success.data.code === 0) {
@@ -70,7 +58,7 @@
             },
             personBUrl(newValue, oldValue) {
                 if (this.personAUrl !== '') {
-                    axios.post('http://127.0.0.1:8080/faceCompare/compare', {
+                    this.axios.post('http://127.0.0.1:8080/faceCompare/compare', {
                         urlA: this.personAUrl, urlB: this.personBUrl
                     }).then((success) => {
                         if (success.data.code === 0) {
@@ -87,34 +75,13 @@
             }
         },
         methods: {
-            uploadA(file) {
-                cos.uploadFile(success => {
-                        if (success.code === 0) {
-                            this.personAUrl = success.data.source_url
-                        } else {
-                            alert(success.message)
-                        }
-                    },
-                    error => alert(error.message),
-                    process => console.log(process),
-                    cos.bucket, this.folder + file.name, file, 0);
-                return false;
+            asuccess(url) {
+                this.personAUrl = url;
             },
-            uploadB(file) {
-                cos.uploadFile(success => {
-                        if (success.code === 0) {
-                            this.personBUrl = success.data.source_url
-                        } else {
-                            alert(success.message)
-                        }
-                    },
-                    error => alert(error.message),
-                    process => console.log(process),
-                    cos.bucket, this.folder + file.name, file, 0);
-                return false;
-            },
-        },
-
+            bsuccess(url) {
+                this.personBUrl = url;
+            }
+        }
     }
 </script>
 
