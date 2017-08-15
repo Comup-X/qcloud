@@ -18,6 +18,9 @@ public class FaceManagementServiceImpl extends FaceService implements FaceManage
 
     @Override
     public boolean addFace(String faceId, String faceUrl) {
+        if (faceId.isEmpty() || faceUrl.isEmpty()) {
+            return false;
+        }
         Face face = new Face();
         face.setFaceId(faceId);
         face.setFaceUrl(faceUrl);

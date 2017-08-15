@@ -8,6 +8,7 @@
     "build": "rimraf dist && webpack -p --progress --hide-modules"
   },
   "dependencies": {
+    "uuid":"^3.1.0",
     "element-ui": "^1.4.2",
     "vue": "^2.4.2",
     "axios": "^0.16.2",
