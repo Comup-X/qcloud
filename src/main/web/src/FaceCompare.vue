@@ -24,15 +24,11 @@
 </template>
 
 <script>
-    import cosUpload from './CosUpload.vue'
 
     export default {
-        components: {
-            'cos-upload': cosUpload
-        },
+
         data() {
             return {
-                folder: '/test/',
                 personAUrl: '',
                 personBUrl: '',
                 result: 0
@@ -41,7 +37,8 @@
         watch: {
             personAUrl(newValue, oldValue) {
                 if (this.personBUrl !== '') {
-                    this.axios.post('http://127.0.0.1:8080/faceCompare/compare', {
+                    debugger;
+                    this.axios.post('/faceCompare/compare', {
                         urlA: this.personAUrl, urlB: this.personBUrl
                     }).then((success) => {
                         if (success.data.code === 0) {
@@ -58,7 +55,8 @@
             },
             personBUrl(newValue, oldValue) {
                 if (this.personAUrl !== '') {
-                    this.axios.post('http://127.0.0.1:8080/faceCompare/compare', {
+                    debugger;
+                    this.axios.post('/faceCompare/compare', {
                         urlA: this.personAUrl, urlB: this.personBUrl
                     }).then((success) => {
                         if (success.data.code === 0) {
@@ -76,9 +74,11 @@
         },
         methods: {
             asuccess(url) {
+                debugger;
                 this.personAUrl = url;
             },
             bsuccess(url) {
+                debugger;
                 this.personBUrl = url;
             }
         }

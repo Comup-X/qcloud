@@ -8,7 +8,7 @@ var cos = new CosCloud({
     bucket: 'test',//bucketName 必填参数
     region: 'gz',//地域信息 必填参数 华南地区填gz 华东填sh 华北填tj
     getAppSign: function (callback) {//获取签名 必填参数
-        axios.get('http://127.0.0.1:8080/sign/sign').then(function (response) {
+        axios.get('/sign/sign').then(function (response) {
             console.log('sign is:' + response.data);
             callback(response.data);
         }).catch(function (error) {
@@ -16,7 +16,7 @@ var cos = new CosCloud({
         });
     },
     getAppSignOnce: function (callback) {
-        axios.get('http://127.0.0.1:8080/sign/onceSign').then(function (response) {
+        axios.get('/sign/onceSign').then(function (response) {
             console.log('onceSign is:' + response.data);
             callback(response.data);
         }).catch(function (error) {

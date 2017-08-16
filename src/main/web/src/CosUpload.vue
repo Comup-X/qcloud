@@ -36,22 +36,24 @@
 
         methods: {
             upload(request) {
-                this.cos.uploadFile(success => {
-                        if (success.code === 0) {
-                            this.axios.post('http://127.0.0.1:8080/face/add', {
-                                faceId: uuid.v1(), faceUrl: success.data.source_url
+                this.cos.uploadFile(cos_success => {
+                        debugger;
+                        if (cos_success.code === 0) {
+                            this.axios.post('/face/add', {
+                                faceId: uuid.v1(), faceUrl: cos_success.data.source_url
                             }).then(success => {
                                 if (!success.data) {
                                     alert('上传失败');
                                 } else {
-                                    this.url = success.data.source_url;
+                                    debugger;
+                                    this.url = cos_success.data.source_url;
                                     this.$emit('success', this.url, this);
                                 }
                             }).catch(error => {
                                 alert(error)
                             });
                         } else {
-                            alert(success.message)
+                            alert(cos_success.message)
                         }
                     },
                     error => alert(error.message),
