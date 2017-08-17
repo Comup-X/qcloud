@@ -5,14 +5,17 @@
                 <cos-upload folder="/test/"
                             @success="asuccess">
                 </cos-upload>
+                <span>点击图标上传图片</span>
             </el-col>
             <el-col :span="12">
                 <cos-upload folder="/test/"
                             @success="bsuccess">
                 </cos-upload>
+                <span>点击图标上传图片</span>
             </el-col>
         </el-row>
         <el-row>
+            <span>对比结果</span>
             <el-rate
                     v-model="result"
                     :allow-half="true"

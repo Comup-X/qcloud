@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <h1>demo for qCloud face</h1>
+        <h1>人脸识别DEMO</h1>
         <p>
             <!-- 使用 router-link 组件来导航. -->
             <!-- 通过传入 `to` 属性指定链接. -->

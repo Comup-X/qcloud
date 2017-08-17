@@ -3,6 +3,7 @@
         <cos-upload folder="/test/"
                     @success="success">
         </cos-upload>
+        <p>点击图标上传图片</p>
         <el-button @click="identify">检索</el-button>
         <span>{{result}}</span>
     </div>

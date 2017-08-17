@@ -1,9 +1,10 @@
 <template>
     <div>
-        <el-input v-model="createRequest.name"></el-input>
+        <el-input style="width: 50%" placeholder="个体名字" v-model="createRequest.name"></el-input>
         <cos-upload folder="/test/"
                     @success="success">
         </cos-upload>
+        <p>点击图标上传图片</p>
         <!--<el-upload-->
         <!--action="https://jsonplaceholder.typicode.com/posts/"-->
         <!--list-type="picture-card"-->
