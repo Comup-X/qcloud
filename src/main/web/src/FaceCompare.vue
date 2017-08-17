@@ -14,7 +14,7 @@
                 <span>点击图标上传图片</span>
             </el-col>
         </el-row>
-        <el-row>
+        <el-row style="margin-top: 50px">
             <span>对比结果</span>
             <el-rate
                     v-model="result"
